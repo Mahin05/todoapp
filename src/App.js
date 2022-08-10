@@ -1,4 +1,4 @@
-import { collection, doc, onSnapshot, query, QuerySnapshot, updateDoc } from 'firebase/firestore';
+import { addDoc, collection, doc, onSnapshot, query, QuerySnapshot, updateDoc } from 'firebase/firestore';
 import { useEffect, useState } from 'react';
 import './App.css';
 import Todo from './Todo';
@@ -14,6 +14,23 @@ const style = {
 }
 function App() {
   const [todos, setTodos] = useState([]);
+  const [input,setInput] = useState('');
+  console.log(input)
+// create todos
+const createTodo = async (e) => {
+  e.preventDefault(e);
+  if(input === ''){
+    alert('Enter Your TODO');
+    return;
+  }
+  await addDoc(collection(db,'todos'),{
+    text:input,
+    completed:false,
+
+  })
+  setInput('');
+}
+
   // read todos from firebase
   useEffect(()=>{
     const q= query(collection(db,'todos'));
@@ -37,8 +54,8 @@ function App() {
     <div className={style.bg}>
       <div className={style.container}>
         <h3 className={style.heading}>TODO List</h3>
-        <form className={style.form}>
-          <input className={style.input} type="text" placeholder='Add TODO' />
+        <form onSubmit={createTodo} className={style.form}>
+          <input value={input} onChange={(e)=>setInput(e.target.value)} className={style.input} type="text" placeholder='Add TODO' />
           <button className={style.button}><span style={{ 'font-size': '30px' }}>+</span></button>
         </form>
         <ul>
@@ -46,7 +63,7 @@ function App() {
             <Todo key={index} todo={todo} toggleComplete={toggleComplete}></Todo>
           ))}
         </ul>
-        <p className={style.count}>You have 2 ToDos </p>
+        {todos.length<1 ? null : <p className={style.count}>{`You have ${todos.length} ToDos`}</p> }
       </div>
     </div>
   );
