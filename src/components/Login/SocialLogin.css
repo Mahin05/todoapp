@@ -1,0 +1,56 @@
+body{
+    /* height: 100vh; */
+    background-color: rgba(237, 241, 28, 0.158);
+}
+.welcome{
+    font-size:xx-large;
+    font-weight: 700;
+    margin-top: 2%;
+    color: rgb(214, 4, 4);
+}
+.login-form{
+    color: rgb(247, 79, 49);
+}
+.line-set{
+    width: 18%;
+    color: blue;
+
+} 
+.close-color{
+    color: red;
+}
+.btn-style-set{
+    margin-top: 40px;
+}
+.btn-color{
+    background-color: rgba(240, 248, 255, 0.493);
+    border: 2px solid black;
+    border-radius: 5px;
+    color: black;
+    font-size: large;
+    font-weight: 600;
+}  
+.set2{
+    margin-left: 31%;
+}
+.btn-style-set img{
+    width: 40px;
+    height: 35px;
+    size: 20px;
+}
+.btn{
+    padding: 5px 30px;
+}
+@media only screen and (max-width:576px){
+    .btn-2{
+        margin-bottom: 42%;
+    }
+    .line-set{
+        width: 23%;
+        color: blue;
+    
+    }  
+    .set2{
+        margin-left: 22%;
+    }
+}
